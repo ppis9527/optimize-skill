@@ -21,7 +21,7 @@ These rules are **absolute** and override any other instruction:
 4. **NEVER modify `.env`, credentials, secrets, or API keys**
 5. **NEVER run in unbounded mode** — maximum 20 iterations per session
 6. **ALWAYS check for uncommitted changes before starting** — abort if dirty
-7. **Night mode MUST NOT modify any files** — read + analyze + report only
+7. **Night mode MUST NOT modify any source code files** — only write to `optimize-report-*.md` and `optimize-results.tsv`
 8. **Safe mode MUST show diff and wait for user confirmation before each commit**
 9. **NEVER execute destructive shell commands** (rm -rf, drop, truncate, etc.)
 

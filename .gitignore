@@ -1,0 +1,4 @@
+# Optimization results (local only, never commit)
+optimize-results.tsv
+optimize-report-*.md
+optimize-results-archive/
