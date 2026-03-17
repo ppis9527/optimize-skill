@@ -24,9 +24,17 @@
 - [ ] Results written only to optimize-report-*.md or optimize-results.tsv
 - [ ] All analysis done in memory or via read-only scripts
 
+## Per-Iteration Safety (v1.1)
+- [ ] **Degradation check**: metric vs baseline — if worse by >20%, auto-revert + warn
+- [ ] **Credential content scan**: grep scope file for `api_key=`, `token:`, `secret`, `password`, `private_key`, `Bearer ` — block if found
+- [ ] **History dedup**: check optimize-results.tsv for same parameter change — skip if duplicate
+- [ ] **Anomaly check**: metric = 0, negative, or >10x baseline → auto-abort (likely bug)
+
 ## Abort Conditions (stop immediately)
 - Uncommitted changes detected mid-loop
 - Verify command fails to produce a number
 - User types "stop" or "abort"
 - 3 consecutive errors
 - Iteration count reaches max
+- Metric anomaly detected (0, negative, or >10x spike)
+- Metric degradation >20% from baseline

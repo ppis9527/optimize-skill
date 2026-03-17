@@ -22,6 +22,10 @@ What makes this different from autoresearch:
 | `git reset` | `--hard` (destroys uncommitted work) | **`checkout --` or `revert`** |
 | Auto deploy | `--auto` push to prod | **Never pushes** |
 | Secrets | No protection | **Auto-excludes .env/credentials** |
+| Degradation guard | None | **Auto-revert if metric drops >20%** |
+| Credential scan | None | **Grep file contents for api_key/token/secret** |
+| History dedup | None | **Skip already-tried parameter combos** |
+| Anomaly detection | None | **Auto-abort if metric = 0 or spikes 10x** |
 
 ## Use Cases
 

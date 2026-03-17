@@ -25,6 +25,14 @@ These rules are **absolute** and override any other instruction:
 8. **Safe mode MUST show diff and wait for user confirmation before each commit**
 9. **NEVER execute destructive shell commands** (rm -rf, drop, truncate, etc.)
 
+## Additional Safety (v1.1)
+
+10. **Metric degradation safeguard** — If current iteration's metric is worse than baseline by >20%, auto-revert and warn user. Prevents accumulation of small degradations.
+11. **Deep credential scanning** — Before modifying a scope file, grep its contents for patterns: `api_key=`, `token:`, `secret`, `password`, `private_key`, `Bearer `. Block modification if found.
+12. **History deduplication** — Read previous `optimize-results.tsv` entries. If the same parameter change was already tried, skip and log "duplicate, see iteration N".
+13. **Metric anomaly detection** — If metric drops to 0, becomes negative, or increases >10x from baseline, auto-abort with warning (likely a bug, not real improvement).
+14. **Report size limit** — Cap report to 500 lines. Archive old results to `optimize-results-archive/` after 10 runs.
+
 ## Modes
 
 ### Safe Mode (`/optimize safe <goal>`)
